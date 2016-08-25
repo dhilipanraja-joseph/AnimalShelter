@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 
 const Person = require('../models/person');
+const Animal = require('../models/animal');
+
 
 router.route('/')
       .get((req,res)=>{
@@ -28,7 +30,7 @@ router.route('/:id')
           }else{
             res.send(person.name+' deleted');
           }
-        })
+        });
       })
 
 module.exports = router;

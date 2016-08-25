@@ -50,6 +50,8 @@ router.put('/removeOwner/:id',(req,res)=>{
   });
 })
 
+//router.put('/')
+
 router.put('/:animalId/addOwner/:ownerId', (req, res) => {
   Animal.findById(req.params.animalId, (err, animal) => {
     if(err || !animal) {

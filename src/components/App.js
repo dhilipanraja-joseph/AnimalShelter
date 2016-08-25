@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import NavLink from './NavLink'
 import PetActions from '../actions/PetActions'
 import ClientActions from '../actions/ClientActions'
-
+import NavBar from './NavBar'
 
 
 
@@ -12,7 +12,7 @@ export default class App extends Component {
     return (
       <div className="container">
         {/* <h1>Animal Shelter</h1> */}
-        <nav class="navbar navbar-default navbar-fixed-top">
+        {/* <nav class="navbar navbar-default navbar-fixed-top">
           <div class="container">
           </div>
         </nav>
@@ -22,7 +22,8 @@ export default class App extends Component {
         <NavLink onClick={PetActions.getAdopted()} to="/adopted">| AdoptedPets |</NavLink>
         <NavLink to="/clientform">| AddClients |</NavLink>
         <NavLink onClick={ClientActions.getAllClients()} to="/showClients">| ShowClients |</NavLink>
-        <hr/>
+        <hr/> */}
+        <NavBar/>
         {this.props.children}
       </div>
     )

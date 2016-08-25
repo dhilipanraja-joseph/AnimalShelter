@@ -18,7 +18,7 @@ require('mongoose').connect(MONGO_URI, err => {
 // APP DECLARATION
 const app = express();
 if(process.env.NODE_ENV == 'production'){
-  app.use(express.static(path.join(_dirname,'../build')))
+  app.use(express.static(path.join(__dirname,'../build')))
 }else{
   //WEBPACK CONFIG
   const webpack = require('webpack');

@@ -4,7 +4,10 @@ import PetActions from '../actions/PetActions'
 
 export default class AdoptedPets extends Component{
   constructor(){
+    PetActions.getAdopted();
+
     super();
+
     this.state={
       pets : GetPetsStore.getAdoptedPets()
     }

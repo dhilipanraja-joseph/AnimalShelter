@@ -1,6 +1,7 @@
 import React , { Component } from 'react'
 import ClientStore from '../stores/ClientStore'
 import PetActions from '../actions/PetActions'
+import NavLink from './NavLink'
 
 export default class AddToClient extends Component{
   constructor(){
@@ -31,7 +32,7 @@ export default class AddToClient extends Component{
         <tr>
           <td>{client.name}</td>
           <td>{client.email}</td>
-          <td><button onClick={this.selectOwner.bind(null,petId,client._id)}>Select</button></td>
+          <td><NavLink onClick={this.selectOwner.bind(null,petId,client._id)} to="/adopted"><button>Select</button></NavLink></td>
         </tr>
       )
     });

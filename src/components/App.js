@@ -10,7 +10,7 @@ export default class App extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div>
         {/* <h1>Animal Shelter</h1> */}
         {/* <nav class="navbar navbar-default navbar-fixed-top">
           <div class="container">
@@ -24,7 +24,9 @@ export default class App extends Component {
         <NavLink onClick={ClientActions.getAllClients()} to="/showClients">| ShowClients |</NavLink>
         <hr/> */}
         <NavBar/>
-        {this.props.children}
+        <div className="container">
+          {this.props.children}
+        </div>
       </div>
     )
   }

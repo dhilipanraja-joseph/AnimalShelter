@@ -17,10 +17,16 @@ router.route('/')
     })
   });
 
-router.get('/populate',(rep,res)=>{
+router.get('/populate',(req,res)=>{
   Animal.find({owner : {$exists : true} },(err,animals)=>{
     res.status(err ? 400 : 200).send(err || animals);
   }).populate('owner');
+})
+
+router.get('/type/:atype',(req,res)=>{
+  Animal.find({type : req.params.atype,owner : {$exists : false},(err,animals)=>{
+    res.status(err ? 400 : 200).send(err || animals);
+  })
 })
 
 router.get('/:id',(req,res)=>{

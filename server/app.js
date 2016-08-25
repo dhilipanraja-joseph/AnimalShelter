@@ -19,14 +19,19 @@ require('mongoose').connect(MONGO_URI, err => {
 
 // APP DECLARATION
 const app = express();
+if(process.env.NODE_ENV == 'production'){
+  app.use(express.static(path.join(_dirname,'../build')))
+}else{
+  //WEBPACK CONFIG
+  const compiler = webpack(webpackConfig);
 
-//WEBPACK CONFIG
-const compiler = webpack(webpackConfig);
+  app.use(require('webpack-dev-middleware')(compiler, {
+    noInfo: true,
+    publicPath: webpackConfig.output.publicPath
+  }));
 
-app.use(require('webpack-dev-middleware')(compiler, {
-  noInfo: true,
-  publicPath: webpackConfig.output.publicPath
-}));
+}
+
 
 app.use(require('webpack-hot-middleware')(compiler));
 

@@ -10,6 +10,7 @@ import AddClients from './components/AddClients'
 import ShowClients from './components/ShowClients'
 import AdoptedPets from './components/AdoptedPets'
 import AddToClient from './components/AddToClient'
+import SortType from './components/SortType'
 
 
 
@@ -23,6 +24,7 @@ render(
       <Route path="/clientform" component={AddClients}/>
       <Route path="/showClients" component={ShowClients}/>
       <Route path="/addtoClient" component={AddToClient}/>
+      <Route path="/type" component={SortType}/>
     </Route>
   </Router>,
   document.getElementById('root')

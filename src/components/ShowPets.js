@@ -25,6 +25,9 @@ export default class ShowPets extends Component{
   addto(id){
     console.log(id);
   }
+  sorttype(type){
+    console.log(type);
+  }
   deletePet(id){
     //e.preventDefault();
     //console.log(id);
@@ -37,7 +40,7 @@ export default class ShowPets extends Component{
         <tr key={pet._id}>
           <td><img src={pet.img} width="150px" alt="NO IMAGE"/></td>
           <td>{pet.name}</td>
-          <td>{pet.type}</td>
+          <td><NavLink onClick={this.sorttype.bind(null,pet.type)} to="/type">{pet.type}</NavLink></td>
           <td>{pet.age}</td>
           <td><button onClick={this.deletePet.bind(null,pet._id)}>Delete</button>
               <NavLink to={{pathname : "/addtoClient", query: {petId : pet._id} }}><button>AddToClient</button></NavLink>

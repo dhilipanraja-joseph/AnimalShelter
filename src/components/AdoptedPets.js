@@ -5,22 +5,27 @@ import PetActions from '../actions/PetActions'
 export default class AdoptedPets extends Component{
   constructor(){
     PetActions.getAdopted();
-
     super();
-
+    this.refreshPetlist();
     this.state={
       pets : GetPetsStore.getAdoptedPets()
     }
     this._onChange = this._onChange.bind(this);
   }
+  refreshPetlist(){
+    PetActions.getAdopted();
+  }
   unadopt(id){
     PetActions.unAdopt(id);
     PetActions.getAdopted();
+    //PetActions.getAdopted();
+    //this.refreshPetlist();
 
   }
   deletePet(id){
     PetActions.deletePet(id);
     PetActions.getAdopted();
+
   }
   componentDidMount(){
     GetPetsStore.startListening(this._onChange);

@@ -29,6 +29,22 @@ const API = {
           })
           .catch(err=>console.log(err))
   },
+  getAdopted(){
+    axios.get('/api/animals/populate')
+          .then(res=>res.data)
+          .then(pets=>{
+            //console.log(pets);
+            AppDispatcher.dispatch({
+              type : 'ALL_ADOPTED_PETS',
+              pets
+            })
+          })
+          .catch(err=>console.log(err))
+  },
+  addOwner(pet,client){
+    axios.put(`/api/animals/${pet}/addOwner/${client}`)
+          .catch(err=>console.log(err))  
+  },
   deleteClient(id){
     axios.delete(`/api/people/${id}`)
           .catch(err=>console.log(err))

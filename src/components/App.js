@@ -11,11 +11,15 @@ export default class App extends Component {
   render() {
     return (
       <div className="container">
-        <h1>Animal Shelter</h1>
-        <hr/>
-        <NavLink to="/">| Home |</NavLink>
+        {/* <h1>Animal Shelter</h1> */}
+        <nav class="navbar navbar-default navbar-fixed-top">
+          <div class="container">
+          </div>
+        </nav>
+        <NavLink to="/"><h3>Animal Shelter</h3></NavLink>
         <NavLink to="/animalform">| AddPets |</NavLink>
         <NavLink onClick={PetActions.getAll()} to="/showPets">| ShowPets |</NavLink>
+        <NavLink onClick={PetActions.getAdopted()} to="/adopted">| AdoptedPets |</NavLink>
         <NavLink to="/clientform">| AddClients |</NavLink>
         <NavLink onClick={ClientActions.getAllClients()} to="/showClients">| ShowClients |</NavLink>
         <hr/>

@@ -7,7 +7,7 @@ const Animal = require('../models/animal');
 
 router.route('/')
   .get((req, res) => {
-    Animal.find({}, (err, animals) => {
+    Animal.find({owner : {$exists : false} }, (err, animals) => {
       res.status(err ? 400 : 200).send(err || animals);
     })
   })
@@ -17,25 +17,20 @@ router.route('/')
     })
   });
 
+router.get('/populate',(rep,res)=>{
+  Animal.find({owner : {$exists : true} },(err,animals)=>{
+    res.status(err ? 400 : 200).send(err || animals);
+  }).populate('owner');
+})
+
 router.get('/:id',(req,res)=>{
   Animal.findById(req.params.id,(err,animal)=>{
     if(err || !animal){
-      return res.status(400).send(err || 'Animal Not found.');
+      return res.status(400).send(err || 'Animal Not found...');
     }
     res.send(animal);
   }).populate('owner');
 })
-
-router.delete('/:id',(req,res)=>{
-  Animal.findByIdAndRemove(req.params.id,(err,animal)=>{
-    if(err || !animal){
-      return res.status(400).send(err || 'Animal not found.');
-    }else{
-      res.send(animal.name+' deleted');
-    }
-  });
-})
-
 
 router.put('/:animalId/addOwner/:ownerId', (req, res) => {
   Animal.findById(req.params.animalId, (err, animal) => {
@@ -52,5 +47,17 @@ router.put('/:animalId/addOwner/:ownerId', (req, res) => {
     });
   });
 });
+
+router.delete('/:id',(req,res)=>{
+  Animal.findByIdAndRemove(req.params.id,(err,animal)=>{
+    if(err || !animal){
+      return res.status(400).send(err || 'Animal not found.');
+    }else{
+      res.send(animal.name+' deleted');
+    }
+  });
+})
+
+
 
 module.exports = router;

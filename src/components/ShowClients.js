@@ -9,7 +9,6 @@ export default class ShowClients extends Component{
       allClients : ClientStore.getAll()
     }
     this._onChange = this._onChange.bind(this);
-    this.deleteClient=this.deleteClient.bind(this);
   }
   deleteClient(id){
     //console.log("delete client:",id);

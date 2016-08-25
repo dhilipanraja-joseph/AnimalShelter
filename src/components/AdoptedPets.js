@@ -1,17 +1,18 @@
-import React,{ Component } from 'react'
+import React , {Component} from 'react'
 import GetPetsStore from '../stores/GetPetsStore'
 import PetActions from '../actions/PetActions'
-import AddToClient from './AddToClient'
-import NavLink from './NavLink'
 
-
-export default class ShowPets extends Component{
+export default class AdoptedPets extends Component{
   constructor(){
     super();
-    this.state = {
-      pets : GetPetsStore.getAllPets(),
+    this.state={
+      pets : GetPetsStore.getAdoptedPets()
     }
     this._onChange = this._onChange.bind(this);
+  }
+  deletePet(id){
+    PetActions.deletePet(id);
+    PetActions.getAdopted();
   }
   componentDidMount(){
     GetPetsStore.startListening(this._onChange);
@@ -20,27 +21,17 @@ export default class ShowPets extends Component{
     GetPetsStore.stopListening(this._onChange);
   }
   _onChange(){
-    this.setState({ pets : GetPetsStore.getAllPets() });
+    this.setState({ pets : GetPetsStore.getAdoptedPets() });
   }
-  addto(id){
-    console.log(id);
-  }
-  deletePet(id){
-    //e.preventDefault();
-    //console.log(id);
-    PetActions.deletePet(id);
-    PetActions.getAll();
-  }
-  render (){
+  render(){
     let petRow = this.state.pets.map(pet=>{
       return (
         <tr key={pet._id}>
           <td><img src={pet.img} width="150px" alt="NO IMAGE"/></td>
           <td>{pet.name}</td>
           <td>{pet.type}</td>
-          <td>{pet.age}</td>
+          <td>{pet.owner.name}  ( {pet.owner.email} )</td>
           <td><button onClick={this.deletePet.bind(null,pet._id)}>Delete</button>
-              <NavLink to={{pathname : "/addtoClient", query: {petId : pet._id} }}><button>AddToClient</button></NavLink>
           </td>
         </tr>
       )
@@ -53,7 +44,7 @@ export default class ShowPets extends Component{
               <th>Image</th>
               <th>Name</th>
               <th>Type</th>
-              <th>Age</th>
+              <th>Owner</th>
               <th>Options</th>
             </tr>
           </thead>
@@ -61,7 +52,6 @@ export default class ShowPets extends Component{
             {petRow}
           </tbody>
         </table>
-
       </div>
     )
   }

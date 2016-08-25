@@ -30,7 +30,7 @@ export default class ShowClients extends Component{
         <tr key={client._id}>
           <td>{client.name}</td>
           <td>{client.email}</td>
-          <td><button onClick={this.deleteClient.bind(null,client._id)}>Delete</button></td>
+          {/* <td><button onClick={this.deleteClient.bind(null,client._id)}>Delete</button></td> */}
         </tr>
       )
     });
@@ -42,7 +42,7 @@ export default class ShowClients extends Component{
       <tr>
       <th>Name</th>
       <th>Email</th>
-      <th>Edit</th>
+      {/* <th>Edit</th> */}
       </tr>
       </thead>
       <tbody>

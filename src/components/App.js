@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import NavLink from './NavLink'
+import PetActions from '../actions/PetActions'
+import ClientActions from '../actions/ClientActions'
+
+
 
 
 export default class App extends Component {
@@ -11,9 +15,9 @@ export default class App extends Component {
         <hr/>
         <NavLink to="/">| Home |</NavLink>
         <NavLink to="/animalform">| AddPets |</NavLink>
-        <NavLink to="/showPets">| ShowPets |</NavLink>
+        <NavLink onClick={PetActions.getAll()} to="/showPets">| ShowPets |</NavLink>
         <NavLink to="/clientform">| AddClients |</NavLink>
-        <NavLink to="/showClients">| ShowClients |</NavLink>
+        <NavLink onClick={ClientActions.getAllClients()} to="/showClients">| ShowClients |</NavLink>
         <hr/>
         {this.props.children}
       </div>

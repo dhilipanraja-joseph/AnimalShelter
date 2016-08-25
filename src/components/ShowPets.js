@@ -19,29 +19,37 @@ export default class ShowPets extends Component{
   _onChange(){
     this.setState({ pets : GetPetsStore.getAllPets() });
   }
-  getAllPet(e){
-    e.preventDefault();
+  deletePet(id){
+    //e.preventDefault();
+    console.log(id);
+    PetActions.deletePet(id);
     PetActions.getAll();
   }
   render (){
     let petRow = this.state.pets.map(pet=>{
       return (
         <tr key={pet._id}>
+          <td><img src={pet.img} width="150px" alt="NO IMAGE"/></td>
           <td>{pet.name}</td>
           <td>{pet.type}</td>
           <td>{pet.age}</td>
+          <td><button onClick={this.deletePet.bind(null,pet._id)}>Delete</button>
+              <button>AddOwner</button>
+          </td>
         </tr>
       )
     });
     return (
       <div>
-      <button onClick={this.getAllPet}>ShowPets</button>
+      {/* <button onClick={this.getAllPet}>ShowPets</button> */}
       <table className="table">
       <thead>
       <tr>
+      <th>Image</th>
       <th>Name</th>
       <th>Type</th>
       <th>Age</th>
+      <th>Options</th>
       </tr>
       </thead>
       <tbody>

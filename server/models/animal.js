@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const animalSchema = new mongoose.Schema({
   name : {type: String, required:true},
   type : {type: String, required:true},
-  age : {type: Number,required : true ,min:0},
+  age : {type: Number, required:true ,min:0},
+  img : {type: String},
   owner : { type: mongoose.Schema.Types.ObjectId, ref : 'Person'}
 });
 

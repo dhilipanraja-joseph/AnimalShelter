@@ -7,7 +7,8 @@ const PetActions = {
   deletePet:API.deletePet,
   getAdopted:API.getAdopted,
   addOwner:API.addOwner,
-  unAdopt:API.unAdopt
+  unAdopt:API.unAdopt,
+  getPetType:API.getPetType
 }
 
 export default PetActions

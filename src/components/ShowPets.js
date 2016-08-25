@@ -27,6 +27,7 @@ export default class ShowPets extends Component{
   }
   sorttype(type){
     console.log(type);
+    PetActions.getPetType(type);
   }
   deletePet(id){
     //e.preventDefault();

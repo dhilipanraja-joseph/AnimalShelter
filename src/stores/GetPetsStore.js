@@ -1,7 +1,7 @@
 import { EventEmitter } from 'events'
 import AppDispatcher from '../AppDispatcher'
 
-let _pets = [],_apets=[];
+let _pets = [],_apets=[],_spets=[];
 
 class GetPetsStore extends EventEmitter {
   constructor(){
@@ -9,10 +9,14 @@ class GetPetsStore extends EventEmitter {
 
     AppDispatcher.register(action=>{
       switch (action.type) {
-        case 'GOT_ALL_PETS' : _pets = action.pets;
-                              this.emit('CHANGE');
-                              break;
+        case 'GOT_ALL_PETS'     : _pets = action.pets;
+                                  this.emit('CHANGE');
+                                  break;
         case 'ALL_ADOPTED_PETS' : _apets = action.pets;
+                                  this.emit('CHANGE');
+                                  break;
+
+        case 'SORTED_PETS'      : _spets = action.pets;
                                   this.emit('CHANGE');
                                   break;
       }
@@ -32,6 +36,9 @@ class GetPetsStore extends EventEmitter {
   }
   getAdoptedPets(){
     return _apets;
+  }
+  getPetsByType(){
+    return _spets;
   }
 }
 

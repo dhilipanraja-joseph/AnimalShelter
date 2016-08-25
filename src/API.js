@@ -29,6 +29,16 @@ const API = {
           })
           .catch(err=>console.log(err))
   },
+  getPetType(type){
+    axios.get(`/api/animals/type/${type}`)
+          .then(res=>res.data)
+          .then(pets=>{
+            AppDispatcher.dispatch({
+              type : 'SORTED_PETS',
+              pets
+            })
+          })
+  },
   getAdopted(){
     axios.get('/api/animals/populate')
           .then(res=>res.data)

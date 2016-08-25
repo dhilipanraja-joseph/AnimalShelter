@@ -18,10 +18,10 @@ module.exports = {
   // devServer: {
   //   contentBase: './src'
   // },
-  plugins: [
-    // new webpack.HotModuleReplacementPlugin(),
-    // new webpack.NoErrorsPlugin()
-  ],
+  // plugins: [
+  //   // new webpack.HotModuleReplacementPlugin(),
+  //   // new webpack.NoErrorsPlugin()
+  // ],
   module: {
     loaders: [
       {

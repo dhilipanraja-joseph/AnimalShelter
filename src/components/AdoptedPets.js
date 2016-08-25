@@ -13,6 +13,11 @@ export default class AdoptedPets extends Component{
     }
     this._onChange = this._onChange.bind(this);
   }
+  unadopt(id){
+    PetActions.unAdopt(id);
+    PetActions.getAdopted();
+
+  }
   deletePet(id){
     PetActions.deletePet(id);
     PetActions.getAdopted();
@@ -35,6 +40,7 @@ export default class AdoptedPets extends Component{
           <td>{pet.type}</td>
           <td>{pet.owner.name}  ( {pet.owner.email} )</td>
           <td><button onClick={this.deletePet.bind(null,pet._id)}>Delete</button>
+              <button onClick={this.unadopt.bind(null,pet._id)}>UnAdopt</button>
           </td>
         </tr>
       )

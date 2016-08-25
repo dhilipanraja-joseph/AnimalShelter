@@ -6,7 +6,8 @@ const PetActions = {
   getAll : API.getAll,
   deletePet:API.deletePet,
   getAdopted:API.getAdopted,
-  addOwner:API.addOwner
+  addOwner:API.addOwner,
+  unAdopt:API.unAdopt
 }
 
 export default PetActions

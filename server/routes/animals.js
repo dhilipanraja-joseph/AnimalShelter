@@ -32,6 +32,18 @@ router.get('/:id',(req,res)=>{
   }).populate('owner');
 })
 
+router.put('/removeOwner/:id',(req,res)=>{
+  Animal.findById(req.params.id,(err,animal)=>{
+    if(err || !animal){
+      return res.status(400).send(err || 'Animal Not found...');
+    }
+    animal.owner = undefined;
+    animal.save((err, savedAnimal) => {
+      res.status(err ? 400 : 200).send(err || savedAnimal);
+    });
+  });
+})
+
 router.put('/:animalId/addOwner/:ownerId', (req, res) => {
   Animal.findById(req.params.animalId, (err, animal) => {
     if(err || !animal) {
@@ -46,7 +58,7 @@ router.put('/:animalId/addOwner/:ownerId', (req, res) => {
       res.status(err ? 400 : 200).send(err || savedAnimal);
     });
   });
-});
+})
 
 router.delete('/:id',(req,res)=>{
   Animal.findByIdAndRemove(req.params.id,(err,animal)=>{

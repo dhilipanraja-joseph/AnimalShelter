@@ -43,7 +43,7 @@ const API = {
   },
   addOwner(pet,client){
     axios.put(`/api/animals/${pet}/addOwner/${client}`)
-          .catch(err=>console.log(err))  
+          .catch(err=>console.log(err))
   },
   deleteClient(id){
     axios.delete(`/api/people/${id}`)
@@ -69,6 +69,10 @@ const API = {
               clients
             })
           })
+          .catch(err=>console.log(err))
+  },
+  unAdopt(id){
+    axios.put(`/api/animals/removeOwner/${id}`)
           .catch(err=>console.log(err))
   }
 }

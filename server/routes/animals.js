@@ -24,7 +24,7 @@ router.get('/populate',(req,res)=>{
 })
 
 router.get('/type/:atype',(req,res)=>{
-  Animal.find({type : req.params.atype},(err,animals)=>{
+  Animal.find({type : req.params.atype,owner :{$exists : false}},(err,animals)=>{
     res.status(err ? 400 : 200).send(err || animals);
   })
 })
